@@ -86,7 +86,7 @@ class Flask(_PackageBoundObject):
         from flask import Flask
         app = Flask(__name__)
 
-    .. admonition:: About the First Parameter
+    ..  admonition:: About the First Parameter
 
         The idea of the first parameter is to give Flask an idea of what
         belongs to your application.  This name is used to find resources
@@ -398,6 +398,7 @@ class Flask(_PackageBoundObject):
         #: be function names which are also used to generate URLs and
         #: the values are the function objects themselves.
         #: To register a view function, use the :meth:`route` decorator.
+        # 保存已被注册的视图函数
         self.view_functions = {}
 
         #: A dictionary of all registered error handlers.  The key is ``None``

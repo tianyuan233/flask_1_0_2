@@ -4,7 +4,6 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('app.setting')
     
-    print(app.config)
     register_blueprint(app)
     return app
 

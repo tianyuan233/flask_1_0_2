@@ -17,3 +17,5 @@ if __name__ == '__main__':
     #             config[key] = getattr(setting, key)
 
     # print(config)
+#     testing = ConfigAttribute('TESTING')
+#     print(testing)

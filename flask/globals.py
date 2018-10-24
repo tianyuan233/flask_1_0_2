@@ -53,8 +53,11 @@ def _find_app():
 
 
 # context locals
+# 请求上下文
 _request_ctx_stack = LocalStack()
+# 应用上下文
 _app_ctx_stack = LocalStack()
+
 current_app = LocalProxy(_find_app)
 request = LocalProxy(partial(_lookup_req_object, 'request'))
 session = LocalProxy(partial(_lookup_req_object, 'session'))
