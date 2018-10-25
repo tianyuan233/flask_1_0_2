@@ -1,2 +1,6 @@
 /.idea
 /.vscode
+/test
+**/__pycache__
+/app/__pycache__
+/app/web/__pycache__

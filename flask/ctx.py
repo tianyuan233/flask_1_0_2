@@ -212,9 +212,13 @@ class AppContext(object):
         # Like request context, app contexts can be pushed multiple times
         # but there a basic "refcount" is enough to track them.
         self._refcnt = 0
-
+    
     def push(self):
-        """Binds the app context to the current context."""
+        """
+        Binds the app context to the current context.
+        # 将实例化的 app push到 _app_ctx_stack 这个栈中
+        而这个栈由werkzeug自己定义的LocalStack实例化而成
+        """
         self._refcnt += 1
         if hasattr(sys, 'exc_clear'):
             sys.exc_clear()
