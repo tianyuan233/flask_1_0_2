@@ -216,7 +216,7 @@ class AppContext(object):
     def push(self):
         """
         Binds the app context to the current context.
-        # 将实例化的 app push到 _app_ctx_stack 这个栈中
+        将实例化的 app push到 _app_ctx_stack 这个栈中
         而这个栈由werkzeug自己定义的LocalStack实例化而成
         """
         self._refcnt += 1
@@ -238,7 +238,7 @@ class AppContext(object):
         assert rv is self, 'Popped wrong app context.  (%r instead of %r)' \
             % (rv, self)
         appcontext_popped.send(self.app)
-
+    #上下文管理器
     def __enter__(self):
         self.push()
         return self

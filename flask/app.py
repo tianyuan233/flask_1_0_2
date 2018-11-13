@@ -166,12 +166,10 @@ class Flask(_PackageBoundObject):
                       manually defined.
     """
 
-    #: The class that is used for request objects.  See :class:`~flask.Request`
-    #: for more information.
+    #: 用作请求对象的类。更多信息参见flask.Request。
     request_class = Request
 
-    #: The class that is used for response objects.  See
-    #: :class:`~flask.Response` for more information.
+    #: 用作响应对象的类。更多信息参见flask.Response。
     response_class = Response
 
     #: The class that is used for the Jinja environment.
@@ -1288,30 +1286,19 @@ class Flask(_PackageBoundObject):
 
     @setupmethod
     def errorhandler(self, code_or_exception):
-        """Register a function to handle errors by code or exception class.
-
-        A decorator that is used to register a function given an
-        error code.  Example::
+        """
+        一个用于为给定的错误码注册函数的装饰器
+        例子：
 
             @app.errorhandler(404)
             def page_not_found(error):
                 return 'This page does not exist', 404
 
-        You can also register handlers for arbitrary exceptions::
+        给任意异常注册函数
 
             @app.errorhandler(DatabaseError)
             def special_exception_handler(error):
                 return 'Database connection failed', 500
-
-        .. versionadded:: 0.7
-            Use :meth:`register_error_handler` instead of modifying
-            :attr:`error_handler_spec` directly, for application wide error
-            handlers.
-
-        .. versionadded:: 0.7
-           One can now additionally also register custom exception types
-           that do not necessarily have to be a subclass of the
-           :class:`~werkzeug.exceptions.HTTPException` class.
 
         :param code_or_exception: the code as integer for the handler, or
                                   an arbitrary exception
