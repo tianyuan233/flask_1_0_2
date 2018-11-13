@@ -251,10 +251,11 @@ class AppContext(object):
 
 
 class RequestContext(object):
-    """The request context contains all request relevant information.  It is
-    created at the beginning of the request and pushed to the
-    `_request_ctx_stack` and removed at the end of it.  It will create the
-    URL adapter and request object for the WSGI environment provided.
+    """
+    请求上下文（request context）包含所有请求相关的信息。它会在请求进入时被创建，
+    然后被推送到_request_ctx_stack，在请求结束时会被相应的移除。
+    它会为提供的WSGI环境创建URL适配器（adapter）和请求对象。
+
 
     Do not attempt to use this class directly, instead use
     :meth:`~flask.Flask.test_request_context` and
@@ -279,6 +280,9 @@ class RequestContext(object):
     sure to properly :meth:`~werkzeug.LocalStack.pop` the stack yourself in
     that situation, otherwise your unittests will leak memory.
     """
+
+    # 会在flask.Flask.request_context和flask.Flask.test_requset_context方法中
+    # 调用，以便生成请求上下文。
 
     def __init__(self, app, environ, request=None):
         self.app = app
@@ -438,13 +442,15 @@ class RequestContext(object):
             self.pop(exc)
 
     def __enter__(self):
+        #将当前请求上下文对象推送到_request_ctx_stack堆栈，这个堆栈在最后定义
+
         self.push()
         return self
 
     def __exit__(self, exc_type, exc_value, tb):
-        # do not pop the request stack if we are in debug mode and an
-        # exception happened.  This will allow the debugger to still
-        # access the request object in the interactive shell.  Furthermore
+        # 在调试模式（debug mode）而且有异常发生时，不要移除（pop）请求堆栈。
+        # 这将允许调试器（debugger）在交互式shell中仍然可以获取请求对象。
+
         # the context can be force kept alive for the test client.
         # See flask.testing for how this works.
         self.auto_pop(exc_value)

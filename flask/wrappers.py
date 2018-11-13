@@ -109,16 +109,10 @@ class JSONMixin(object):
 
 
 class Request(RequestBase, JSONMixin):
-    """The request object used by default in Flask.  Remembers the
-    matched endpoint and view arguments.
-
-    It is what ends up as :class:`~flask.request`.  If you want to replace
-    the request object used you can subclass this and set
-    :attr:`~flask.Flask.request_class` to your subclass.
-
-    The request object is a :class:`~werkzeug.wrappers.Request` subclass and
-    provides all of the attributes Werkzeug defines plus a few Flask
-    specific ones.
+    """
+    Flask默认使用的请求对象，用来记住匹配的端点值（endpoint）和视图参数（view arguments）。
+    这就是最终的flask.request对象。如果你想替换掉这个请求对象，可以子类化这个
+    类，然后将你的子类赋值给flask.Flask.request_class。
     """
 
     #: The internal URL rule that matched the request.  This can be
@@ -180,21 +174,11 @@ class Request(RequestBase, JSONMixin):
 
 
 class Response(ResponseBase, JSONMixin):
-    """The response object that is used by default in Flask.  Works like the
-    response object from Werkzeug but is set to have an HTML mimetype by
-    default.  Quite often you don't have to create this object yourself because
-    :meth:`~flask.Flask.make_response` will take care of that for you.
+    """Flask默认使用的响应对象。除了将MIME类型默认设置为HTML外，和Werkzeug提供的响应对象
+    完全相同。通常情况下，你不需要自己创建这个对象，
+    因为flask.Flask.make_response会负责这个工作。
 
-    If you want to replace the response object used you can subclass this and
-    set :attr:`~flask.Flask.response_class` to your subclass.
-
-    .. versionchanged:: 1.0
-        JSON support is added to the response, like the request. This is useful
-        when testing to get the test client response data as JSON.
-
-    .. versionchanged:: 1.0
-
-        Added :attr:`max_cookie_size`.
+    如果你想替换这个响应对象，你可以子类化这个类，然后将你的子类赋值给flask.Flask.response_class。
     """
 
     default_mimetype = 'text/html'

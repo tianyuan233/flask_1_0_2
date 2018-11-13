@@ -5,9 +5,6 @@ def create_app():
     app.config.from_object('app.setting')
     
     register_blueprint(app)
-
-    with app.app_context():
-        pass
     return app
 
 

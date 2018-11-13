@@ -1442,14 +1442,8 @@ class Flask(_PackageBoundObject):
 
     @setupmethod
     def before_request(self, f):
-        """Registers a function to run before each request.
-
-        For example, this can be used to open a database connection, or to load
-        the logged in user from the session.
-
-        The function will be called without any arguments. If it returns a
-        non-None value, the value is handled as if it was the return value from
-        the view, and further request handling is stopped.
+        """
+        注册一个函数，则每一个请求处理前调用。
         """
         self.before_request_funcs.setdefault(None, []).append(f)
         return f
@@ -1555,7 +1549,7 @@ class Flask(_PackageBoundObject):
 
     @setupmethod
     def context_processor(self, f):
-        """Registers a template context processor function."""
+        """注册一个模板上下文处理函数。"""
         self.template_context_processors[None].append(f)
         return f
 
@@ -1880,43 +1874,8 @@ class Flask(_PackageBoundObject):
         return False
 
     def make_response(self, rv):
-        """Convert the return value from a view function to an instance of
-        :attr:`response_class`.
-
-        :param rv: the return value from the view function. The view function
-            must return a response. Returning ``None``, or the view ending
-            without returning, is not allowed. The following types are allowed
-            for ``view_rv``:
-
-            ``str`` (``unicode`` in Python 2)
-                A response object is created with the string encoded to UTF-8
-                as the body.
-
-            ``bytes`` (``str`` in Python 2)
-                A response object is created with the bytes as the body.
-
-            ``tuple``
-                Either ``(body, status, headers)``, ``(body, status)``, or
-                ``(body, headers)``, where ``body`` is any of the other types
-                allowed here, ``status`` is a string or an integer, and
-                ``headers`` is a dictionary or a list of ``(key, value)``
-                tuples. If ``body`` is a :attr:`response_class` instance,
-                ``status`` overwrites the exiting value and ``headers`` are
-                extended.
-
-            :attr:`response_class`
-                The object is returned unchanged.
-
-            other :class:`~werkzeug.wrappers.Response` class
-                The object is coerced to :attr:`response_class`.
-
-            :func:`callable`
-                The function is called as a WSGI application. The result is
-                used to create a response object.
-
-        .. versionchanged:: 0.9
-           Previously a tuple was interpreted as the arguments for the
-           response object.
+        """
+        将视图函数的返回值转换成一个真正的响应对象，即response_class实例。
         """
 
         status = headers = None
