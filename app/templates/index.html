@@ -4,3 +4,11 @@
 <p>endpoint:{{ endpoint }}</p>
 <p>blueprint:{{ blueprint }}</p>
 <p>baseurl:{{ baseurl }}</p>
+
+{% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+        {% if message %}
+            <div>{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+{% endwith %}

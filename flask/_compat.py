@@ -13,6 +13,13 @@
 
 import sys
 
+#sys.version_info[0] 返回系统python的版本
+# In [3]: sys.version_info
+# Out[3]: sys.version_info(major=3, minor=6, micro=4, releaselevel='final', serial=0)
+#
+# In [4]: sys.version_info[0]
+# Out[4]: 3
+
 PY2 = sys.version_info[0] == 2
 _identity = lambda x: x
 

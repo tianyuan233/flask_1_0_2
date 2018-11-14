@@ -2115,7 +2115,7 @@ class Flask(_PackageBoundObject):
         for func in reversed(self.teardown_appcontext_funcs):
             func(exc)
         appcontext_tearing_down.send(self, exc=exc)
-
+    #//TODO app_context
     def app_context(self):
         """Create an :class:`~flask.ctx.AppContext`. Use as a ``with``
         block to push the context, which will make :data:`current_app`
@@ -2136,7 +2136,7 @@ class Flask(_PackageBoundObject):
         .. versionadded:: 0.9
         """
         return AppContext(self)
-
+    #//TODO request_context
     def request_context(self, environ):
         """Create a :class:`~flask.ctx.RequestContext` representing a
         WSGI environment. Use a ``with`` block to push the context,

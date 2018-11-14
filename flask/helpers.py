@@ -384,12 +384,9 @@ def get_template_attribute(template_name, attribute):
 
 
 def flash(message, category='message'):
-    """Flashes a message to the next request.  In order to remove the
-    flashed message from the session and to display it to the user,
-    the template has to call :func:`get_flashed_messages`.
-
-    .. versionchanged:: 0.3
-       `category` parameter added.
+    """将消息闪烁到下一个请求。
+    为了从会话中删除闪烁的消息并将其显示给用户，
+    模板必须调用：func：`get_flashed_messages`
 
     :param message: the message to be flashed.
     :param category: the category for the message.  The following values
@@ -1015,7 +1012,7 @@ def total_seconds(td):
 
 
 def is_ip(value):
-    """Determine if the given string is an IP address.
+    """确定给定的字符串是否是IP地址.
 
     Python 2 on Windows doesn't provide ``inet_pton``, so this only
     checks IPv4 addresses in that environment.
